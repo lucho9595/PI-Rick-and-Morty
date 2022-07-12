@@ -3,31 +3,32 @@ const { DataTypes } = require("sequelize");
 // Luego le injectamos la conexion a sequelize.
 module.exports = (sequelize) => {
   // defino el modelo
-  sequelize.define("character", {
+  sequelize.define("Character", {
     id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.UUID, //para que tenga un valor unico de ID
+      defaultValue: DataTypes.UUIDV4, //creamos un valor por defecto en el caso que no hay
       primaryKey: true,
+      allowNull: false,
     },
     name: {
-type: DataTypes.STRING,
-allowNull: false
+      type: DataTypes.STRING,
+      allowNull: false
     },
     species: {
-      type: DataType.ENUM,
+      type: DataTypes.STRING,
       allowNull: false,
-      value: ['Human', 'Alien']
     },
     origin: {
-      type: DataType.STRING,
+      type: DataTypes.STRING,
       allowNull: false
     },
     image: {
-      type: DataType.STRING,
+      type: DataTypes.STRING,
       allowNull: false
     },
     created: {
-      type: DataType.DATE,
-      allowNull: false
+      type: DataTypes.DATE,
+      defaultValue: DataTypes.NOW,
     }
   });
 };
